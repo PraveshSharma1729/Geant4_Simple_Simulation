@@ -11,10 +11,10 @@ void MyRunAction::BeginOfRunAction(const G4Run*)
 {
 G4AnalysisManager *man = G4AnalysisManager::Instance();
 
-man->OpenFile("Output.root");
+man->OpenFile("0.5mm.root");
 
 man->CreateNtuple("E_Dep","E_Dep");
-man->CreateNtupleDColumn("Enegy_511keV_Photon_1mm_W");
+man->CreateNtupleDColumn("Enegy_511keV_Photon_0.5mm_Pb");
 man->FinishNtuple(0);
 }
 

@@ -15,7 +15,7 @@ G4Material *Silicon= nist->FindOrBuildMaterial("G4_Si");
 
 G4Material *worldMat =nist->FindOrBuildMaterial("G4_Galactic");
 
-G4Material *Tungsten= nist->FindOrBuildMaterial("G4_W");
+G4Material *Plate= nist->FindOrBuildMaterial("G4_Pb");
 
 G4Box *solidWorld = new G4Box("solidWorld",20.0*m,20.0*m,20.0*m);
 
@@ -27,13 +27,13 @@ G4VPhysicalVolume *physWorld = new G4PVPlacement(0, G4ThreeVector(0.,0.,0.), log
 	
 	
 // Defining Logic Volume for Absorber
-    G4double zPlaneAbs[] = { 0*um, 0.5*mm }; // Z planes
+    G4double zPlaneAbs[] = { 0*um, 0.25*mm }; // Z planes
     G4double rInnerAbs[] = { 0*cm, 0*cm };  // Inner radius
     G4double rOuterAbs[] = { 101.6*mm, 101.6*mm };  // Outer radius
  
     G4Polyhedra* Abs = new G4Polyhedra("Abs", 0.*deg, 360.*deg, 6, 2, zPlaneAbs, rInnerAbs, rOuterAbs);
 
-    G4LogicalVolume *logicAbs = new G4LogicalVolume(Abs, Tungsten, "logicAbs");
+    G4LogicalVolume *logicAbs = new G4LogicalVolume(Abs, Plate, "logicAbs");
 
 
 	// Create and configure visualization attributes
@@ -63,7 +63,7 @@ G4VPhysicalVolume *physWorld = new G4PVPlacement(0, G4ThreeVector(0.,0.,0.), log
 	
     G4VPhysicalVolume *physDetector = new G4PVPlacement(rotation,G4ThreeVector(0.,0.,5*cm),logicDetector,"physDetector",logicWorld,false,1,true);
 		
-    G4VPhysicalVolume *physAbs = new G4PVPlacement(rotation, G4ThreeVector(0.0,0.0,5*cm-0.5*mm),logicAbs,"physAbs",logicWorld,false,2,true);
+    G4VPhysicalVolume *physAbs = new G4PVPlacement(rotation, G4ThreeVector(0.0,0.0,5*cm-0.25*mm),logicAbs,"physAbs",logicWorld,false,2,true);
 		
 
 
